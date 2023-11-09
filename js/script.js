@@ -1,37 +1,35 @@
-var form1 = document.getElementById("form1");
-var form2 = document.getElementById("form2");
-var form3 = document.getElementById("form3");
-var form4 = document.getElementById("form4");
 
-var next1 = document.getElementById("next1");
-var next2 = document.getElementById("next2");
-var previous = document.getElementById("previous");
-var submit = document.getElementById("submit");
+var div1= document.querySelector("#div1")
+var showPriceBtn = document.querySelector("#show-price")
+var allproducts = document.querySelectorAll(".card-body button")
+var totpriceh3 = document.querySelector("#final-price")
+var cartNum = document.querySelector("#cart-num")
+var totalPrice=0
+var numItems=0
+var itemTitle=""
 
-next1.onclick = function(){
-    form2.style.display = "block";
-    form1.style.display = "none";
-    form3.style.display = "none";
-    form4.style.display = "none";
-}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+allproducts.forEach(function(item){
+    item.onclick=function(){
+        totalPrice += +(item.getAttribute("price"))
+        itemTitle = item.getAttribute("title")
+        div1.innerHTML+= "<i class='fas fa-arrow-right' fs-5></i>" +" " + itemTitle  +"<br>" 
+        numItems++
+        cartNum.innerHTML= numItems
+        if (div1.innerHTML !== ""){
+            showPriceBtn.style.display="block"
+        }
+       
+    }
+})
 
-previous.onclick = function(){
-    form2.style.display = "none";
-    form1.style.display = "block";
-    form3.style.display = "none";
-    form4.style.display = "none";
-}
 
-next2.onclick = function(){
-    form2.style.display = "none";
-    form1.style.display = "none";
-    form3.style.display = "block";
-    form4.style.display = "none";
-}
 
-submit.onclick = function(){
-    form2.style.display = "none";
-    form1.style.display = "none";
-    form3.style.display = "none";
-    form4.style.display = "block";
-}
+showPriceBtn.onclick=function(){
+    
+    
+    totpriceh3.innerHTML=  totalPrice  +" <span>$</span> " 
+
+}  
+
+    
